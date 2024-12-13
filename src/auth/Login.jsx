@@ -59,7 +59,7 @@ export default function Login () {
 
     if (Object.keys(newFormErrors).length === 0) {
       try {
-        const loginResponse = await postApi('auth/signin', formData)
+        const loginResponse = await postApi('auth/signin/', formData)
         if (loginResponse) {
           console.log('loginResponse', loginResponse)
           navigate('/')
