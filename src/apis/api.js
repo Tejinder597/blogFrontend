@@ -1,7 +1,7 @@
 import axios from "axios";
 import { getToken } from "../helpers/localStorage";
 
-const baseUrl = "http://localhost:8000/api/v1/";
+const baseUrl = "https://blogbackend-6295.onrender.com/api/v1/";
 
 // Create the Axios instance with the base URL
 const axiosInstance = axios.create({
