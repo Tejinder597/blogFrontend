@@ -6,6 +6,9 @@ const baseUrl = "https://blogbackend-6295.onrender.com/api/v1/";
 // Create the Axios instance with the base URL
 const axiosInstance = axios.create({
   baseURL: baseUrl,
+  headers: {
+    'Content-Type': 'application/json',
+  }
 });
 
 // Request interceptor to attach the Authorization token if it exists
@@ -18,6 +21,18 @@ axiosInstance.interceptors.request.use(
     return config;
   },
   (error) => {
+    return Promise.reject(error);
+  }
+);
+
+// Response interceptor to handle errors globally
+axiosInstance.interceptors.response.use(
+  (response) => response, // Pass through successful responses
+  (error) => {
+    if (error.response && error.response.status === 401) {
+      console.error("Unauthorized access - Redirecting to login...");
+      // Optional: Handle token expiration or redirection to login
+    }
     return Promise.reject(error);
   }
 );
@@ -38,3 +53,5 @@ export const putApi = (url, data, config = {}) => {
 export const deleteApi = (url, data, config = {}) => {
   return axiosInstance.delete(url, { data, ...config });
 };
+
+export default axiosInstance;
