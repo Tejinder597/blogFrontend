@@ -6,7 +6,6 @@ const baseUrl = "https://blogbackend-6295.onrender.com/api/v1/";
 // Create the Axios instance with the base URL
 const axiosInstance = axios.create({
   baseURL: baseUrl,
-  withCredentials: false,
 });
 
 // Request interceptor to attach the Authorization token if it exists
